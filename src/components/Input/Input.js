@@ -7,23 +7,32 @@ function Input({
   value = "",
   placeholder = "",
   handleChange = () => {},
+  handleBlur = () => {},
   errorMessage,
+  hasErrorMessage,
   ...props
 }) {
   return (
     <div className="form-group">
       <label htmlFor={id}>{label}</label>
       <input
-        className={errorMessage ? "form-control is-invalid" : "form-control"}
+        className={
+          hasErrorMessage && errorMessage
+            ? "form-control is-invalid"
+            : "form-control"
+        }
         id={id}
         name={id}
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
+        onBlur={handleBlur}
         {...props}
       />
-      {errorMessage && <p className="invalid-feedback">{errorMessage}</p>}
+      {hasErrorMessage && errorMessage && (
+        <p className="invalid-feedback">{errorMessage}</p>
+      )}
     </div>
   );
 }
