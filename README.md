@@ -6,7 +6,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-# Assembler School: React Shopping Cart Project
+# Assembler School: React Shopping Cart Formik
 
 In this project you will learn how to create a React.js and how to apply all the
 important concepts.
@@ -26,7 +26,7 @@ account:
 <img src="https://docs.github.com/assets/images/help/repository/fork_button.jpg" alt="Fork on GitHub" width='450'>
 
 ```
-$ git clone https://github.com/assembler-school/react-shopping-cart-project.git
+$ git clone https://github.com/assembler-school/react-shopping-cart-formik.git
 ```
 
 ## Contents and Branches Naming Strategy
@@ -36,9 +36,8 @@ section.
 
 The branches follow a naming strategy like the following:
 
-- `{NN}-{section-name}`: includes the main contents and the instructions of the
-  section
-- `{NN}-{section-name}-solution`: includes the solution of the section
+- `main`: includes the main contents and the instructions
+- `assembler-solution`: includes the solution
 
 ### Fetching All the Branches
 
@@ -74,19 +73,21 @@ $ npm install
 
 ### Running the Tests
 
-@TODO
+The tests that validate your solution can be executed by running the following
+command:
 
 ```
-$ npm run test:components
+$ npm run test
 ```
 
 ### Git `precommit` and `prepush` Hooks
 
-@todo
+In the `assembler-solution` branch you can see an implementation of these tools
+if you'd like to use them.
 
 ## Deployment
 
-@TODO
+In this pill we won't deploy the app.
 
 ## Technologies used
 
@@ -111,6 +112,88 @@ found in the doc that the academic team will provide you.
 - You must use semantic HTML5 elements for all the markup of the application
 - Once you are done, you can move on to the optional ones that are marked as
   `Extra 💯`
+
+### 1. `productSchema`
+
+#### File
+
+```sh
+/src/components/NewProductForm/product-schema.js
+```
+
+1. complete the schema with the following requirements:
+
+- `title`:
+  - min: 2, The title is too short!
+  - max: 50, The title is too long!
+  - required, The title is too required
+- `price`:
+  - integer: The price must be an integer
+  - positive: The price must be a positive number
+  - required, The price is required
+- `img`:
+  - url: The image url is invalid
+  - required, The image url is required
+- `shortDescription`:
+  - min: 2, The short description is too short!
+  - max: 50, The short description is too long!
+  - required, The short description is required
+- `longDescription`:
+  - min: 2, The long description is too short!
+  - max: 50, The long description is too long!
+  - required, The long description is required
+- `unitsInStock`:
+  - integer: The units in stock must be an integer
+  - positive: The units in stock must be a positive number
+  - required, The units in stock is required
+- `authorFirstName`:
+  - min: 2, The author first name is too short!
+  - required, The author first name is required
+- `authorLastName`:
+  - min: 2, The author last name is too short!
+  - required, The author last name is required
+- `authorEmail`:
+  - email: Invalid email
+  - required, Required
+
+#### Test suite name
+
+@TODO
+
+### 2. Product form
+
+#### File
+
+```sh
+/src/components/NewProductForm/NewProductForm.js
+```
+
+1. add all the missing form inputs that the `initialValues` object defines
+
+```jsx
+<Formik
+  initialValues={{
+    title: "",
+    price: 0,
+    img: "",
+    shortDescription: "",
+    longDescription: "",
+    unitsInStock: 0,
+    authorFirstName: "",
+    authorLastName: "",
+    authorEmail: "",
+  }}
+  validationSchema={productSchema}
+  onSubmit={(values) => {
+    const newProduct = addProductDetails(values);
+    saveNewProduct(newProduct);
+  }}
+></Formik>
+```
+
+#### Test suite name
+
+@TODO
 
 ## Project delivery
 
